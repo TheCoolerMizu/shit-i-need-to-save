@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3lh047yd8ktu"]
+
+[ext_resource type="PackedScene" uid="uid://c3cwqqx2pfna8" path="res://lil guy 2.glb" id="1_atner"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="2_i3los"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ukr4"]
+radius = 1.71405
+height = 5.45713
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75nhr"]
+size = Vector3(16, 0.001, 15)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.538061, 0, 0, 0, 0.618471, 0, 0, 0, 0.635968, 0, 0, 0)
+
+[node name="lil guy 2" parent="." instance=ExtResource("1_atner")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137358, 1.30197, 0.258553)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="lil guy 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_i3los")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lil guy 2/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40098, 0)
+shape = SubResource("CapsuleShape3D_7ukr4")
+
+[node name="CameraPivot" type="Node3D" parent="lil guy 2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="lil guy 2/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.760632, 0.649182, 0, -0.649182, 0.760633, 0, 2.40098, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="lil guy 2/CameraPivot/SpringArm3D"]
+transform = Transform3D(1.85852, 0, 0, 0, 1.53006, -0.462022, 0, 0.501787, 1.51012, 0.22433, 0.254043, 5.07845)
+fov = 97.7272
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.296314, 0.491193, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0.711678, -0.0996713, 0.933866)
+shape = SubResource("BoxShape3D_75nhr")
